@@ -125,5 +125,100 @@ public class Main {
         // concat() gibi metotlar yeni bir String oluşturur, mevcut String'i
         // değiştirmez.
         System.out.println(name3);
+
+        // Karar Blokları & Döngüler
+
+        // Belirli 1+ kapsamdaki kod bloklarını belirli koşullara göre ateşlemek.
+        // Karar bloğu = minimum 1 maksimum n adet karara göre farklı kodlar
+        // çalıştırabilir.
+        // Koşul: true-false
+
+        // Her koşul bloğu yalnızca maksimum 1 scope çalıştırır.
+        // Kodlar yukarıdan aşağıya çalıştırılır.
+        int age2 = 18;
+
+        if (age2 >= 18) {
+            System.out.println("Yetki verildi");
+        } else if (age2 == 18) {
+            System.out.println("Yaşınız tam 18, ay kontrolü yapılıyor.");
+        } else {
+            System.out.println("Yetki verilmedi");
+        }
+
+        String username = "halit";
+        if (username.equals("tamer")) {
+            System.out.println("Tamer hoş geldin..");
+        } // Karar blokları illaki bir scope çalıştırma zorunluluğu barındırmaz.
+
+        /// ..... öğrenci notu hesaplama
+        ///
+        ///
+        ///
+        ///
+        ///
+        ///
+        ///
+        ///
+        ///
+        ///
+        /// ....... öğrenci notu hesaplama
+        String result1 = calculateGrade(85); // konsola yaz
+        String result2 = calculateGrade(70, "Ayşe"); // db'e yaz
+        String result3 = calculateGrade(60); // email at..
+        String result4 = calculateGrade(50, "Nurgül");
+        String result5 = calculateGrade(30, "Tamer");
+
+        System.out.println(result1);
+
+        // result2 db'e yaz
+        // result3 mail at..
+
+        double toplam1 = sum(10.5, 20.3);
+        System.out.println(toplam1);
+
+        double toplam2 = sum(1, 2, 3, 4, 5, 6, 7);
+        System.out.println(toplam2);
     }
-} // Main classının kapsama alanı (sınır)
+
+    // Methodlar => belirli bir işi yapan kod bloklarıdır. Tekrar tekrar
+    // kullanılabilirler.
+    // erişim-belirteci - static veya boş - dönüş tipi (void => boş) - method ismi -
+    // (parametreler) - {}
+    // bir parametre tanımlıysa, null bile olsa göndermek zorundasın.
+    public static String calculateGrade(int grade, String name) // required parameter
+    {
+        if (grade >= 85) {
+            String result = name + " Notunuz: A";
+            return result;
+        } else if (grade >= 70) {
+            return name + " Notunuz: B";
+        } else if (grade >= 50) {
+            return name + " Notunuz: C";
+        } else {
+            return name + " Notunuz: F";
+        }
+    }
+
+    // Name gönderilmezse, "Öğrenci" olarak varsayılan değer alsın.
+    // Method Overloading => Aynı isimde, farklı parametre sayısına sahip methodlar
+    // oluşturma.
+    public static String calculateGrade(int grade) {
+        return calculateGrade(grade, "Öğrenci");
+    }
+
+    public static double sum(double a, double b) {
+        return a + b;
+    }
+
+    public static double sum(double... numbers) { // varargs
+        double total = 0;
+        for (double num : numbers) {
+            total += num;
+        }
+        return total;
+    }
+}
+// CTRL + SHIFT + P
+// User Settings
+// Compact
+// Explorer: Compact Folders kapat
