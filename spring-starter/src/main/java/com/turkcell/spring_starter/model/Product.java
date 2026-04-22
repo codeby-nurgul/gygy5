@@ -1,6 +1,7 @@
 package com.turkcell.spring_starter.model;
 
 // Entity,Domain Model, Model => Veritabanı nesnesinin koddaki temsilidir.
+//ORM-DB BAĞLANTISI auth jwt 
 public class Product {
     private int id;
     private String name;
