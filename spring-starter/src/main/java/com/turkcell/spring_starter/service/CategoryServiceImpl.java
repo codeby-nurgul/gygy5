@@ -13,7 +13,7 @@ public class CategoryServiceImpl {
         this.categoryRepository = categoryRepository;
     }
 
-    public void create(Category category) {
+    public void create(CategoryRepository  categoryRepository)
         // Veritabanında insert-update çalıştır.
         // entity id'e sahipse update
         // entity id'si null ise insert
