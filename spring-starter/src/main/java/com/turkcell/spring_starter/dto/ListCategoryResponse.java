@@ -2,7 +2,7 @@ package com.turkcell.spring_starter.dto;
 
 import java.util.UUID;
 
-public class CreatedCategoryResponse {
+public class ListCategoryResponse {
     private UUID id;
     private String name;
     
