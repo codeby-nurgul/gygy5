@@ -15,63 +15,66 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Product {
-   // @GeneratedValue(strategy = GenerationType.IDENTITY) -> 1'er 1'er artan strateji.
+   // @GeneratedValue(strategy = GenerationType.IDENTITY) -> 1'er 1'er artan
+   // strateji.
    @Id
    @UuidGenerator()
-   @Column(name="id")
+   @Column(name = "id")
    private UUID id;
 
-   @Column(name="name", nullable = false, length = 100)
+   @Column(name = "name", nullable = false, length = 100)
    private String name;
 
-   @Column(name="description", length = 500)
+   @Column(name = "description", length = 500)
    private String description;
 
    @ManyToOne
-   @JoinColumn(name="category_id", nullable = false)
+   @JoinColumn(name = "category_id", nullable = false)
    private Category category;
 
    @ManyToMany
-   @JoinTable(
-      name="product_tags",
-      joinColumns = @JoinColumn(name="product_id"),
-      inverseJoinColumns = @JoinColumn(name="tag_id")
-   )
+   @JoinTable(name = "product_tags", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
    private Set<Tag> tags;
 
-
    public UUID getId() {
-    return id;
+      return id;
    }
 
    public void setId(UUID id) {
-    this.id = id;
+      this.id = id;
    }
 
    public String getName() {
-    return name;
+      return name;
    }
 
    public void setName(String name) {
-    this.name = name;
+      this.name = name;
    }
 
    public String getDescription() {
-    return description;
+      return description;
    }
 
    public void setDescription(String description) {
-    this.description = description;
+      this.description = description;
    }
 
    public Category getCategory() {
-    return category;
+      return category;
    }
 
    public void setCategory(Category category) {
-    this.category = category;
+      this.category = category;
    }
 
+   public Set<Tag> getTags() {
+      return tags;
+   }
+
+   public void setTags(Set<Tag> tags) {
+      this.tags = tags;
+   }
 }

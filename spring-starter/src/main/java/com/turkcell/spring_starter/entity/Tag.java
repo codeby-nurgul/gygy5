@@ -1,6 +1,5 @@
 package com.turkcell.spring_starter.entity;
 
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -13,19 +12,18 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tags")
+@Table(name = "tags")
 public class Tag {
     @Id
     @UuidGenerator
-    @Column(name="id")
+    @Column(name = "id")
     private UUID id;
 
-    @Column(name="name", nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
     @ManyToMany(mappedBy = "tags")
     private Set<Product> products;
-
 
     public UUID getId() {
         return id;
@@ -41,5 +39,13 @@ public class Tag {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }
