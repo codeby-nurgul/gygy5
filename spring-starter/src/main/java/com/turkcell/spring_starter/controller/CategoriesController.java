@@ -16,6 +16,8 @@ import com.turkcell.spring_starter.dto.ListCategoryResponse;
 import com.turkcell.spring_starter.dto.UpdateCategoryRequest;
 import com.turkcell.spring_starter.service.CategoryServiceImpl;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +38,11 @@ public class CategoriesController {
     @GetMapping
     public List<ListCategoryResponse> getAll() {
         return categoryServiceImpl.getAll();
+    }
+
+    @GetMapping("search")
+    public List<ListCategoryResponse> getMethodName(@RequestParam String query) {
+        return categoryServiceImpl.search(query);
     }
 
     @GetMapping("/{id}")
