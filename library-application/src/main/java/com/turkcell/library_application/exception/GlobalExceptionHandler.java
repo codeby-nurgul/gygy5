@@ -1,8 +1,8 @@
-package com.turkcell.spring_starter.exception;
+package com.turkcell.library_application.exception;
 
-import com.turkcell.spring_starter.exception.details.ErrorResponse;
-import com.turkcell.spring_starter.exception.details.ValidationDetail;
-import com.turkcell.spring_starter.exception.details.ValidationErrorResponse;
+import com.turkcell.library_application.exception.details.ErrorResponse;
+import com.turkcell.library_application.exception.details.ValidationDetail;
+import com.turkcell.library_application.exception.details.ValidationErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

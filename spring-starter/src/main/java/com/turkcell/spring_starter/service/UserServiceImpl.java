@@ -1,5 +1,7 @@
 package com.turkcell.spring_starter.service;
 
+import com.turkcell.spring_starter.exception.InvalidCredentialsException;
+import com.turkcell.spring_starter.exception.UserAlreadyExistsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,7 @@ public class UserServiceImpl {
         User userWithSameEmail = userRepository.findByEmail(registerRequest.getEmail())
                 .orElse(null);
         if (userWithSameEmail != null) {
-            throw new RuntimeException("Bu e-posta zaten kayıtlı.");
+            throw new UserAlreadyExistsException("Bu e-posta zaten kayıtlı.");
         }
 
         User user = new User();
@@ -41,12 +43,12 @@ public class UserServiceImpl {
 
         User user = this.userRepository
                 .findByEmail(loginRequest.getEmail())
-                .orElseThrow(() -> new RuntimeException(errorMessage));
+                .orElseThrow(() -> new InvalidCredentialsException(errorMessage));
 
         // Kullanıcı var gibi davran
         boolean passwordMatch = this.passwordEncoder.matches(loginRequest.getPassword(), user.getPassword());
         if (!passwordMatch)
-            throw new RuntimeException(errorMessage);
+            throw new InvalidCredentialsException(errorMessage);
 
         // Bu e-posta ile bir kayıt var.
 

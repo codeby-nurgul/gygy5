@@ -8,6 +8,7 @@ import com.turkcell.library_application.entity.Book;
 import com.turkcell.library_application.entity.Category;
 import com.turkcell.library_application.repository.BookRepository;
 import com.turkcell.library_application.repository.CategoryRepository;
+import com.turkcell.library_application.exception.BusinessException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class BookServiceImpl {
     }
 
     public void update(int id, UpdateBookRequest request) {
-        Book book = bookRepository.findById(id).orElseThrow();
+        Book book = bookRepository.findById(id).orElseThrow(() -> new BusinessException("Güncellenmek istenen kitap bulunamadı."));
         book.setTitle(request.getTitle());
         book.setAuthor(request.getAuthor());
         book.setPublisher(request.getPublisher());
@@ -75,7 +76,7 @@ public class BookServiceImpl {
     }
 
     public void delete(int id) {
-        Book book = bookRepository.findById(id).orElseThrow();
+        Book book = bookRepository.findById(id).orElseThrow(() -> new BusinessException("Silinmek istenen kitap bulunamadı."));
         bookRepository.delete(book);
     }
 }
